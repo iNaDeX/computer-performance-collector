@@ -15,6 +15,7 @@
 #define FALSE 0
 #define TRUE 1
 #define BUFFER_SIZE 1024
+#define MAX_COMMAND_LENGTH 256
 
 typedef struct processInfo {
     unsigned long PID;
@@ -36,7 +37,7 @@ typedef struct processInfo {
     unsigned long minor_faults;
     unsigned long read_bytes;
     unsigned long write_bytes;
-    char* full_command;
+    char full_command[MAX_COMMAND_LENGTH];
 } t_processInfo;
 
 t_processInfo* create_new_processInfo(char* PID);

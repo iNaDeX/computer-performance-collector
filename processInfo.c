@@ -15,7 +15,7 @@ long get_uptime()
 t_processInfo* create_new_processInfo(char* PID) {
     t_processInfo* n = calloc(1, sizeof(t_processInfo)); // create & init at 0
     n->PID = strtol(PID, NULL, 10); // set PID
-    n->full_command = NULL;
+    n->full_command[0] = '\0';
     return n;
 }
 
@@ -183,7 +183,7 @@ void read_cmdline_file(t_processInfo* p) {
         return;
     }
 
-    p->full_command = strdup(fileContent);
+    strncpy(p->full_command,fileContent,MAX_COMMAND_LENGTH); // truncated command
     fclose(fp);
 }
 
@@ -247,12 +247,11 @@ void print_process_info(t_processInfo* p) {
     p->minor_faults,
     p->read_bytes,
     p->write_bytes,
-    p->full_command == NULL ? "": p->full_command
+    p->full_command
     );
 }
 
 void free_processInfo(t_processInfo** p) {
-	free((*p)->full_command);
 	free(*p);
 	*p = NULL;
 }
