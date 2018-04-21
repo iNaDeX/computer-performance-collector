@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
             read_status_file(newP);
             read_io_file(newP);
             read_cmdline_file(newP);
-            print_process_info(newP); // output stats
+            print_process_info(newP); // output stats (no need to modify endianness to Network Byte Order because ASCII 1byte strings)
             free_processInfo(&newP);
         }
     }
