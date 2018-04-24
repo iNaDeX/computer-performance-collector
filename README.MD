@@ -1,6 +1,8 @@
+# Performance Statistics Collector. Set-UID program that collects information from the /proc filesystem on UNIX computers.
+
 build: gcc -o getData main.c processInfo.c processInfo.h
 
 run:
 sudo chown root getData
 sudo chmod u+s getData
-for i in {1..4}; do ./getData >> samples.txt; sleep 15; done
+./getData > proc_data.txt
